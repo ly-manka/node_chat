@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import { client } from '../utils/db.js';
+const { DataTypes } = require('sequelize');
+const { client } = require('../utils/db.js');
 
-export const User = client.define(
+const User = client.define(
   'user',
   {
     id: {
@@ -20,3 +20,5 @@ export const User = client.define(
     timestamps: true,
   },
 );
+
+module.exports = { User };

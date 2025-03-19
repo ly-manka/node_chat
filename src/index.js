@@ -1,11 +1,11 @@
 'use strict';
 
-import express from 'express';
-import cors from 'cors';
-import { userRouter } from './routes/user.route.js';
-import { roomRouter } from './routes/room.routes.js';
-import { errorMiddleware } from './middleware/errorMiddleware.js';
-import { setupWebSocket } from './wsServer.js';
+const express = require('express');
+const cors = require('cors');
+const { userRouter } = require('./routes/user.route.js');
+const { roomRouter } = require('./routes/room.routes.js');
+const { errorMiddleware } = require('./middleware/errorMiddleware.js');
+const { setupWebSocket } = require('./wsServer.js');
 
 const app = express();
 

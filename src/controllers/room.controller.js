@@ -71,16 +71,16 @@ const addMessage = async (req, res) => {
   const { id: roomId } = req.params;
   const { userId, text } = req.body;
 
-  const room = await roomService.findRoom(roomId);
-
-  if (!room) {
-    throw ApiError.notFound({ error: 'Room not found' });
-  }
-
   const isMember = await UserRoom.findOne({ where: { userId, roomId } });
 
   if (!isMember) {
     throw ApiError.forbidden({ error: 'You are not in this room' });
+  }
+
+  const room = await roomService.findRoom(roomId);
+
+  if (!room) {
+    throw ApiError.notFound({ error: 'Room not found' });
   }
 
   const message = await messageService.create({ userId, roomId, text });
@@ -115,7 +115,7 @@ const join = async (req, res) => {
 
 const getAllMessages = async (req, res) => {
   const { id: roomId } = req.params;
-  const { userId } = req.body;
+  const { userId } = req.query;
 
   const member = await userRoomService.findMember({ userId, roomId });
 

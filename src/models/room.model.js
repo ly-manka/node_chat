@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize';
-import { client } from '../utils/db.js';
-import { User } from './user.model.js';
+const { DataTypes } = require('sequelize');
+const { client } = require('../utils/db.js');
+const { User } = require('./user.model.js');
 
-export const Room = client.define(
+const Room = client.define(
   'room',
   {
     id: {
@@ -23,3 +23,5 @@ export const Room = client.define(
 
 Room.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
 User.hasMany(Room, { foreignKey: 'userId' });
+
+module.exports = { Room };

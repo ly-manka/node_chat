@@ -1,5 +1,5 @@
-import { ApiError } from '../exception/api.error.js';
-import { userService } from '../services/user.service.js';
+const { ApiError } = require('../exception/api.error.js');
+const { userService } = require('../services/user.service.js');
 
 const getOne = async (req, res) => {
   const { id } = req.params;
@@ -37,7 +37,4 @@ const create = async (req, res) => {
   res.send(newUser);
 };
 
-export const userController = {
-  create,
-  getOne,
-};
+module.exports = { userController: { create, getOne } };

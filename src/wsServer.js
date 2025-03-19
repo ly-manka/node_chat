@@ -1,10 +1,10 @@
-import { WebSocketServer } from 'ws';
-import { userRoomService } from './services/userRoom.service.js';
-import { messageService } from './services/message.service.js';
+const { WebSocketServer } = require('ws');
+const { userRoomService } = require('./services/userRoom.service.js');
+const { messageService } = require('./services/message.service.js');
 
-export const rooms = new Map();
+const rooms = new Map();
 
-export const setupWebSocket = (server) => {
+const setupWebSocket = (server) => {
   const wss = new WebSocketServer({ server });
 
   wss.on('connection', async (connection) => {
@@ -74,3 +74,5 @@ export const setupWebSocket = (server) => {
     });
   });
 };
+
+module.exports = { rooms, setupWebSocket };

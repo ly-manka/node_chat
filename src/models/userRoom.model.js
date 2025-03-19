@@ -1,8 +1,8 @@
-import { client } from '../utils/db.js';
-import { Room } from './room.model.js';
-import { User } from './user.model.js';
+const { client } = require('../utils/db.js');
+const { Room } = require('./room.model.js');
+const { User } = require('./user.model.js');
 
-export const UserRoom = client.define('user_room', {}, { timestamps: false });
+const UserRoom = client.define('user_room', {}, { timestamps: false });
 
 User.belongsToMany(Room, {
   through: UserRoom,
@@ -15,3 +15,5 @@ Room.belongsToMany(User, {
   foreignKey: 'roomId',
   onDelete: 'CASCADE',
 });
+
+module.exports = { UserRoom };

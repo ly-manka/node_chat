@@ -1,4 +1,4 @@
-import { Room } from '../models/room.model.js';
+const { Room } = require('../models/room.model.js');
 
 const findRoom = (id) => {
   return Room.findByPk(id);
@@ -25,9 +25,11 @@ const remove = (id) => {
   return Room.destroy({ where: { id } });
 };
 
-export const roomService = {
-  create,
-  remove,
-  rename,
-  findRoom,
+module.exports = {
+  roomService: {
+    create,
+    remove,
+    rename,
+    findRoom,
+  },
 };
